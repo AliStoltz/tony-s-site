@@ -28,6 +28,20 @@ const showAllProducts = (req, res) => {
   });
 };
 
+// GET products by category
+const showCategory = (req, res) => {
+  db.Product.find({category:req.params.category}, (error, foundCategory) => {
+    if (error) return res.status(500).json({
+      status: 500,
+      message: error,
+    });
+    res.status(200).json({
+      status: 200,
+      message: foundCategory
+    });
+  });
+};
+
 
 // GET all user Products
 const showUserProducts = (req, res) => {
@@ -104,5 +118,6 @@ modules.exports = {
   showAllProducts,
   updateProduct,
   deleteProduct,
-  addProduct
+  addProduct, 
+  showCategory
 };
